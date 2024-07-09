@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { StoreProvider } from "./StoreProvider";
+import Nav from "@/components/layout/Nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,15 +16,18 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Props) {
+
   return (
     <StoreProvider>
       <html lang="en">
         <body className={inter.className}>
-          <nav></nav>
+          <header className="bg-slate-200 py-4">
+            <Nav />
+          </header>
 
-          <main>{children}</main>
-
-          <footer></footer>
+          <main className="container flex justify-center">
+            {children}
+          </main>
         </body>
       </html>
     </StoreProvider>
