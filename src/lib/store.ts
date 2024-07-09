@@ -1,4 +1,8 @@
-import type { Action, ThunkAction } from "@reduxjs/toolkit"
+import type {
+  Action,
+  ConfigureStoreOptions,
+  ThunkAction,
+} from "@reduxjs/toolkit"
 import { combineSlices, configureStore } from "@reduxjs/toolkit"
 import { blogSlice } from "./features/blog/blogSlice"
 
@@ -18,18 +22,17 @@ export const makeStore = () => {
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.
     middleware: (getDefaultMiddleware) => {
-      return getDefaultMiddleware()
-        .concat
-        /* quotesApiSlice.middleware */
-        ()
+      return getDefaultMiddleware().concat()
     },
   })
 }
 
+const store = makeStore()
+
 // Infer the return type of `makeStore`
 export type AppStore = ReturnType<typeof makeStore>
 // Infer the `AppDispatch` type from the store itself
-export type AppDispatch = AppStore["dispatch"]
+export type AppDispatch = typeof store.dispatch
 export type AppThunk<ThunkReturnType = void> = ThunkAction<
   ThunkReturnType,
   RootState,
