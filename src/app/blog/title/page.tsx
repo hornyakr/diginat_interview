@@ -18,7 +18,7 @@ const validationSchema = z.object({
 })
 
 export default function TitlePage() {
-    const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch()
     const title = useAppSelector(selectTitle)
 
     const form = useForm<z.infer<typeof validationSchema>>({
