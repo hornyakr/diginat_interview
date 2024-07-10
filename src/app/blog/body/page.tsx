@@ -1,6 +1,6 @@
 
 
-export default function FinishPage() {
+export default function BodyPage() {
     return (
         <>
             Finish
